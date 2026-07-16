@@ -5,15 +5,24 @@ limit = float(sys.argv[2])
 
 print(f"threshold: {threshold}, limit: {limit}")
 
+total = 0
+
 for line in sys.stdin:
     if not line:
         continue
 
     input_value = float(line)
 
-    output = input_value - threshold
+    output_value = input_value - threshold
 
-    if output < 0.0:
-        output = 0.0
+    if output_value < 0.0:
+        output_value = 0.0
+
+    budget = limit - total
+
+    if output_value > budget:
+        output_value = budget
+
+    total += output_value
     
-    print(f"value: {output}")
+    print(f"value: {input_value}, output: {output_value}, total: {total}")

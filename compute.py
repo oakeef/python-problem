@@ -3,11 +3,11 @@ import sys
 threshold = float(sys.argv[1])
 limit = float(sys.argv[2])
 
-print(f"threshold: {threshold}, limit: {limit}")
-
 total = 0
 
 for line in sys.stdin:
+    line = line.strip()
+
     if not line:
         continue
 
@@ -25,4 +25,6 @@ for line in sys.stdin:
 
     total += output_value
     
-    print(f"value: {input_value}, output: {output_value}, total: {total}")
+    print(round(output_value,1))
+
+print(round(total,1))
